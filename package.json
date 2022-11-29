@@ -1,0 +1,71 @@
+{
+  "name": "@pawel-up/wm-design-tools",
+  "version": "0.0.1",
+  "description": "Designer tools as a web component and a browser extension.",
+  "license": "MIT",
+  "author": {
+    "name": "Pawel Uchida-Psztyc",
+    "email": "pawel.psztyc@gmail.com"
+  },
+  "contributors": [
+    "Your name can be here!"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pawel-up/wm-design-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pawel-up/wm-design-tools/issues",
+    "email": "pawel.psztyc@gmail.com"
+  },
+  "scripts": {
+    "analyze": "cem analyze --litelement",
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "build": "tsc && npm run analyze -- --exclude dist",
+    "prepublish": "tsc && npm run analyze -- --exclude dist",
+    "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
+    "test": "tsc && wtr --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "prepare": "husky install",
+    "tsc:watch": "tsc --watch"
+  },
+  "dependencies": {
+    "lit": "^2.4.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@custom-elements-manifest/analyzer": "^0.6.6",
+    "@open-wc/eslint-config": "^9.0.0",
+    "@open-wc/testing": "^3.1.7",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@web/dev-server": "^0.1.35",
+    "@web/dev-server-esbuild": "^0.3.3",
+    "@web/test-runner": "^0.15.0",
+    "@web/test-runner-playwright": "^0.9.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "sinon": "^15.0.0",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
+    "*.ts": [
+      "eslint --fix"
+    ]
+  },
+  "customElements": "custom-elements.json"
+}
